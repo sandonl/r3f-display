@@ -29,6 +29,10 @@ body,
   overflow: hidden;
 }
 
+body{
+  transition: 0.4s ease-in-out
+}
+
 /* Header */
 header {
   position: absolute;
@@ -88,8 +92,18 @@ header {
   justify-content: center;
 }
 
+.scrollArea {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+}
+
+
 .title {
-  font-size: 10rem;
+  font-size: 8rem;
   text-align: center;
   width: 100%;
   margin: 0 auto; 
@@ -98,3 +112,4 @@ header {
     font-size: 6rem; 
   }
 }
+

@@ -1,30 +1,41 @@
-import React, { Suspense } from "react";
-import { Canvas } from "@react-three/fiber";
+import React, { Suspense, useEffect, useRef } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { Section } from "./components/section";
 import Header from "./components/header";
 
 import { Html, useGLTF } from "@react-three/drei";
+import state from "./components/state";
 
-const Model = () => {
-  const gltf = useGLTF("/armchairYellow.gltf", true);
+const Model = ({ modelPath }) => {
+  const gltf = useGLTF(modelPath, true);
   return <primitive object={gltf.scene} dispose={null} />;
 };
 
 const Lights = () => {
-  return <ambientLight intensity={0.4} />;
+  return (
+    <>
+      <ambientLight intensity={0.3} />
+      <directionalLight position={[10, 20, 5]} intensity={1} />
+      <directionalLight position={[0, 10, 0]} intensity={1.5} />
+      <spotLight position={[0, 1000, 0]} intensity={1} />
+    </>
+  );
 };
 
-const HTMLContent = () => {
+const HTMLContent = ({ domContent, children, modelPath, positionY }) => {
+  const ref = useRef();
+
+  // Rotation of the chair
+  useFrame(() => (ref.current.rotation.y += 0.01));
+
   return (
     <Section factor={1.5} offset={1}>
-      <group position={[0, 250, 0]}>
-        <mesh position={[0, -35, 0]}>
-          <Model />
+      <group position={[0, positionY, 0]}>
+        <mesh ref={ref} position={[0, -35, 0]}>
+          <Model modelPath={modelPath} />
         </mesh>
-        <Html fullscreen>
-          <div className="container">
-            <h1 className="title"> Hello </h1>
-          </div>
+        <Html portal={domContent} fullscreen>
+          {children}
         </Html>
       </group>
     </Section>
@@ -32,15 +43,52 @@ const HTMLContent = () => {
 };
 
 function App() {
+  const domContent = useRef();
+  const scrollArea = useRef();
+  const onScroll = (e) => (state.top.current = e.target.scrollTop);
+
+  useEffect(() => void onScroll({ target: scrollArea.current }), []);
+
   return (
     <>
       <Header />
       <Canvas camera={{ position: [0, 0, 120], fov: 70 }}>
         <Lights />
         <Suspense fallback={null}>
-          <HTMLContent />
+          <HTMLContent
+            domContent={domContent}
+            modelPath="/armchairYellow.gltf"
+            positionY={250}
+          >
+            <div className="container">
+              <h1 className="title"> Yellow </h1>
+            </div>
+          </HTMLContent>
+          <HTMLContent
+            domContent={domContent}
+            modelPath="/armchairGreen.gltf"
+            positionY={0}
+          >
+            <div className="container">
+              <h1 className="title"> Green </h1>
+            </div>
+          </HTMLContent>
+          <HTMLContent
+            domContent={domContent}
+            modelPath="/armchairGray.gltf"
+            positionY={-250}
+          >
+            <div className="container">
+              <h1 className="title"> Gray </h1>
+            </div>
+          </HTMLContent>
         </Suspense>
       </Canvas>
+
+      <div className="scrollArea" ref={scrollArea} onScroll={onScroll}>
+        <div style={{ position: "sticky", top: 0 }} ref={domContent}></div>
+        <div style={{ height: `${state.sections * 100}vh` }}></div>
+      </div>
     </>
   );
 }
