@@ -32,6 +32,7 @@ body,
 
 body{
   transition: 0.4s ease-in-out;
+  overflow: hidden;
 }
 
 /* Header */
@@ -76,6 +77,7 @@ header {
   padding: 12px 24px;
   border-radius: 10px;
   font-weight: 600;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 }
 
 .header-inner .btn a:hover {
@@ -91,7 +93,6 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 
 .scrollArea {
@@ -100,8 +101,15 @@ header {
   left: 0;
   width: 100vw;
   height: 100vh;
-  overflow: auto;
+  overflow-x: hidden;
 }
+
+.scrollTop {
+  position: sticky;
+  top: 0;
+
+}
+
 
 
 .title {
@@ -112,4 +120,3 @@ header {
   color: white;
   padding: 1em;
 }
-

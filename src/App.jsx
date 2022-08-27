@@ -100,11 +100,13 @@ function App() {
       </Canvas>
 
       <div className="scrollArea" ref={scrollArea} onScroll={onScroll}>
-        <div style={{ position: "sticky", top: 0 }} ref={domContent}></div>
+        <div className="scrollTop" ref={domContent}></div>
         <div style={{ height: `${state.sections * 100}vh` }}></div>
       </div>
     </>
   );
 }
+
+// style={{ position: "sticky", top: 0 }}
 
 export default App;
