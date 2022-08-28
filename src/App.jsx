@@ -7,6 +7,7 @@ import { Html, useGLTF } from "@react-three/drei";
 import state from "./components/state";
 
 import { useInView } from "react-intersection-observer";
+import { Loader } from "./components/loader";
 
 const Model = ({ modelPath }) => {
   const gltf = useGLTF(modelPath, true);
@@ -100,6 +101,7 @@ function App() {
           </HTMLContent>
         </Suspense>
       </Canvas>
+      <Loader />
 
       <div className="scrollArea" ref={scrollArea} onScroll={onScroll}>
         <div className="scrollTop" ref={domContent}></div>
