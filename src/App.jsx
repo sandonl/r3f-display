@@ -97,7 +97,7 @@ function App() {
             positionY={-250}
             bgColor={"#41436A"}
           >
-            <h1 className="title"> Gray </h1>
+            <h1 className="title"> Grey </h1>
           </HTMLContent>
         </Suspense>
       </Canvas>

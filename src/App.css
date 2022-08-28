@@ -96,6 +96,7 @@ header {
 .header-inner a {
   text-decoration: none;
   text-transform: capitalize;
+  font-weight: 600;
   color: #fff;
 }
 
