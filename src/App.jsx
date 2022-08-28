@@ -8,6 +8,7 @@ import state from "./components/state";
 
 import { useInView } from "react-intersection-observer";
 import { Loader } from "./components/loader";
+import Footer from "./components/footer";
 
 const Model = ({ modelPath }) => {
   const gltf = useGLTF(modelPath, true);
@@ -72,6 +73,7 @@ function App() {
   return (
     <>
       <Header />
+
       <Canvas camera={{ position: [0, 0, 120], fov: 70 }}>
         <Lights />
         <Suspense fallback={null}>
@@ -107,6 +109,7 @@ function App() {
         <div className="scrollTop" ref={domContent}></div>
         <div style={{ height: `${state.sections * 100}vh` }}></div>
       </div>
+      <Footer />
     </>
   );
 }
