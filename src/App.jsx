@@ -34,7 +34,9 @@ const HTMLContent = ({
   const ref = useRef();
 
   // Rotation of the chair
-  useFrame(() => (ref.current.rotation.y += 0.01));
+  useFrame(() => {
+    ref.current.rotation.y += 0.01;
+  });
   const [refItem, inView] = useInView({
     threshold: 0,
   });
@@ -76,15 +78,15 @@ function App() {
             domContent={domContent}
             modelPath="/armchairYellow.gltf"
             positionY={250}
-            bgColor={"#f15946"}
+            bgColor={"#a3d6d2"}
           >
-            <h1 className="title"> Yellow </h1>
+            <h1 className="title">Yellow</h1>
           </HTMLContent>
           <HTMLContent
             domContent={domContent}
             modelPath="/armchairGreen.gltf"
             positionY={0}
-            bgColor={"#571ec1"}
+            bgColor={"#de78a2"}
           >
             <h1 className="title"> Green </h1>
           </HTMLContent>
@@ -92,7 +94,7 @@ function App() {
             domContent={domContent}
             modelPath="/armchairGray.gltf"
             positionY={-250}
-            bgColor={"#636567"}
+            bgColor={"#41436A"}
           >
             <h1 className="title"> Gray </h1>
           </HTMLContent>
@@ -106,7 +108,5 @@ function App() {
     </>
   );
 }
-
-// style={{ position: "sticky", top: 0 }}
 
 export default App;
