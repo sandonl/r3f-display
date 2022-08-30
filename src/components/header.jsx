@@ -19,9 +19,6 @@ export default function Header() {
             <li>
               <a href="/">reach</a>
             </li>
-            <li>
-              <a href="/">discover</a>
-            </li>
             <li className="btn">
               <a href="/">order</a>
             </li>

@@ -9,3 +9,5 @@ An example product page utilising the following technologies:
 - React-spring
 
 View a live [demo](https://r3f-chair-sandonl.vercel.app/)
+
+Original design inspired by: [Wrong Akram](https://www.youtube.com/c/WrongAkram)
